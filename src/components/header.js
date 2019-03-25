@@ -2,7 +2,7 @@ import PropTypes from "prop-types"
 import React from "react"
 
 const Header = ({ title, description }) => (
-  <header>
+  <header className="titlebar">
     <div>
       <h1>{title}</h1>
       <h2>{description}</h2>

@@ -25,13 +25,14 @@ const Layout = ({ children }) => (
       }
     `}
     render={({site: {siteMetadata: {...data}}}) => (
-      <>
+      <div className="layout">
           <Header {...data}/>
-          <main>{children}</main>
-          <footer>
+          <nav className="navbar">link1</nav>
+          <main className="content">{children}</main>
+          <footer className="footer">
             &copy;{new Date().getFullYear()} All rights and shame reserved
           </footer>
-      </>
+      </div>
     )}
   />
 )
