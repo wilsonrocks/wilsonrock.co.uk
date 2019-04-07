@@ -1,36 +1,34 @@
-const path = require("path")
+const { createFilePath } = require('gatsby-source-filesystem');
 
-exports.createPages = ({ actions, graphql }) => {
-  const { createPage } = actions
+exports.onCreateNode = ({ node, getNode, actions }) => {
+  if (node.internal.type === 'MarkdownRemark') {
+    const { createNodeField } = actions;
+    const fileNode = getNode(node.parent);
+    const slug = createFilePath({ node, getNode, basePath: 'pages' });
+    createNodeField({
+      node,
+      name: 'slug',
+      value: slug,
+    });
+  }
+};
 
-  const blogPostTemplate = path.resolve(`src/templates/blogTemplate.js`)
 
+exports.createPages = ({ graphql, actions }) => {
   return graphql(`
     {
-      allMarkdownRemark(
-        sort: { order: DESC, fields: [frontmatter___date] }
-        limit: 1000
-      ) {
+      allMarkdownRemark {
         edges {
           node {
-            frontmatter {
-              path
+            fields {
+              slug
             }
           }
         }
       }
     }
-  `).then(result => {
-    if (result.errors) {
-      return Promise.reject(result.errors)
-    }
-
-    result.data.allMarkdownRemark.edges.forEach(({ node }) => {
-      createPage({
-        path: node.frontmatter.path,
-        component: blogPostTemplate,
-        context: {}, // additional data can be passed via context
-      })
-    })
+  `
+).then(result => {
+    console.log(JSON.stringify(result, null, 4))
   })
 }
