@@ -1,31 +1,69 @@
 import React from "react"
 import { graphql } from "gatsby"
+import "../components/layout.css"
+
 
 const Blog = ({
   data: {
     allMarkdownRemark: {
-      nodes
+      edges
     }
   }
 }) => (
-    <div>
-      {
-        nodes.map(({ html, frontmatter: { title, date } }) => <div><h1>{title}</h1><h2>{date}</h2><div dangerouslySetInnerHTML={{__html:html}}></div></div>)
-      }
+    <div className="layout">
+      <div className="content">
+        {
+          edges.map(
+            ({
+              node: {
+                excerpt,
+                timeToRead,
+                wordCount: {
+                  words,
+                },
+                frontmatter: {
+                  title,
+                  date,
+                  category,
+                },
+              },
+            }) => (
+                <div>
+                  <h1>
+                    {title} ({words} words - {timeToRead} mins)
+              </h1>
+                  <h2>
+                    {category}
+                  </h2>
+                  <p>{excerpt}</p>
+                </div>
+              )
+          )
+        }
+      </div>
     </div>
   );
 
-export const pageQuery = graphql`
-query {
+export const pageQuery = graphql`{
   allMarkdownRemark {
-    nodes {
-      html
-      frontmatter {
-        title
-        date
+    edges {
+      node {
+        timeToRead
+        excerpt
+        frontmatter {
+          title
+          category
+        }
+        wordCount {
+          paragraphs
+          sentences
+          words
+        }
       }
     }
-  }}`;
+  }
+}
+`;
 
 
 export default Blog
