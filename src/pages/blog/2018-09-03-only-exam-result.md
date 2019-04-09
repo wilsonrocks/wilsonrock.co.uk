@@ -2,7 +2,7 @@
 layout: post
 title: The only exam result I am proud of after eight years of teaching Maths
 category: life
-tags: teaching, maths
+tags: ['teaching', 'maths']
 date: 2018-09-03
 ---
 # The only exam result I am proud of after eight years of teaching Maths

@@ -2,7 +2,7 @@
 layout: post
 title: 'Why My Little Pony: Friendship is Magic is good for my daughter and me'
 category: life
-tags: MLP, parenting
+tags: ['MLP', 'parenting']
 date: 2018-08-21
 ---
 
