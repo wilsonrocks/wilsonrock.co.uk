@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import "../components/layout.css"
 
 
@@ -23,18 +23,20 @@ const Blog = ({
                 },
                 frontmatter: {
                   title,
-                  date,
                   category,
+                },
+                fields: {
+                  slug,
                 },
               },
             }) => (
                 <div>
-                  <h1>
+                  <Link to={slug}>
                     {title} ({words} words - {timeToRead} mins)
-              </h1>
-                  <h2>
+                  </Link>
+                  <p>
                     {category}
-                  </h2>
+                  </p>
                   <p>{excerpt}</p>
                 </div>
               )
@@ -58,6 +60,9 @@ export const pageQuery = graphql`{
           paragraphs
           sentences
           words
+        }
+        fields {
+          slug
         }
       }
     }
