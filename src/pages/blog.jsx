@@ -1,50 +1,49 @@
-import React from "react"
-import { Link, graphql } from "gatsby"
-import "../components/layout.css"
-
+import React from 'react';
+import { Link, graphql } from 'gatsby';
+import Layout from '../components/layout';
 
 const Blog = ({
   data: {
     allMarkdownRemark: {
-      edges
-    }
-  }
+      edges,
+    },
+  },
 }) => (
-    <div className="layout">
-      <div className="content">
-        {
-          edges.map(
-            ({
-              node: {
-                excerpt,
-                timeToRead,
-                wordCount: {
-                  words,
-                },
-                frontmatter: {
-                  title,
-                  category,
-                },
-                fields: {
-                  slug,
-                },
+  <Layout>
+    <div className="content">
+      {
+        edges.map(
+          ({
+            node: {
+              excerpt,
+              timeToRead,
+              wordCount: {
+                words,
               },
-            }) => (
-                <div>
-                  <Link to={slug}>
-                    {title} ({words} words - {timeToRead} mins)
-                  </Link>
-                  <p>
-                    {category}
-                  </p>
-                  <p>{excerpt}</p>
-                </div>
-              )
-          )
-        }
-      </div>
+              frontmatter: {
+                title,
+                category,
+              },
+              fields: {
+                slug,
+              },
+            },
+          }) => (
+            <div>
+              <Link to={slug}>
+                {title} ({words} words - {timeToRead} mins)
+              </Link>
+              <p>
+                {category}
+              </p>
+              <p>{excerpt}</p>
+            </div>
+          ),
+        )
+      }
     </div>
-  );
+  </Layout>
+);
 
 export const pageQuery = graphql`{
   allMarkdownRemark {
@@ -71,4 +70,4 @@ export const pageQuery = graphql`{
 `;
 
 
-export default Blog
+export default Blog;

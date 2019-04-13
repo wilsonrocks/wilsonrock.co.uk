@@ -4,7 +4,6 @@ const path = require('path');
 exports.onCreateNode = ({ node, getNode, actions }) => {
   if (node.internal.type === 'MarkdownRemark') {
     const { createNodeField } = actions;
-    const fileNode = getNode(node.parent);
     const slug = createFilePath({ node, getNode, basePath: 'pages' });
     createNodeField({
       node,
@@ -29,18 +28,17 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     }
-  `
-  ).then(result => {
+  `).then((result) => {
     result.data.allMarkdownRemark.edges.forEach(({ node }) => {
       createPage({
         path: node.fields.slug,
-        component: path.resolve(`./src/templates/blogPost.jsx`),
+        component: path.resolve('./src/templates/blogPost.jsx'),
         context: {
           // Data passed to context is available
           // in page queries as GraphQL variables.
           slug: node.fields.slug,
         },
-      })
-    })
-  })
-}
+      });
+    });
+  });
+};

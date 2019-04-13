@@ -1,5 +1,6 @@
 import React from 'react';
-import {graphql} from 'gatsby'
+import { graphql } from 'gatsby';
+import Layout from '../components/layout';
 
 const BlogPost = ({
   data: {
@@ -11,11 +12,13 @@ const BlogPost = ({
     },
   },
 }) => (
-    <div>
+  <Layout>
+    <div className="content">
       <h1>{title}</h1>
       <div dangerouslySetInnerHTML={{ __html: html }} />
     </div>
-  );
+  </Layout>
+);
 
 
 export default BlogPost;

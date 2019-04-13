@@ -10,16 +10,23 @@
     "gatsby-plugin-manifest": "^2.0.24",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.10",
-    "gatsby-plugin-sharp": "^2.0.30",
+    "gatsby-plugin-sass": "^2.0.11",
+    "gatsby-plugin-sharp": "^2.0.34",
     "gatsby-source-filesystem": "^2.0.28",
     "gatsby-transformer-remark": "^2.3.8",
     "gatsby-transformer-sharp": "^2.1.17",
+    "node-sass": "^4.11.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-helmet": "^5.2.0"
   },
   "devDependencies": {
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.17.1",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.12.4",
     "prettier": "^1.16.4"
   },
   "keywords": [
